@@ -6,6 +6,10 @@ from bot.model.settings.phi_3 import PhiThreeSettings
 from bot.model.settings.stablelm_zephyr import StableLMZephyrSettings
 from bot.model.settings.starling import StarlingSettings
 from bot.model.settings.refact import RefactSettings
+from bot.model.settings.yi_coder_chat import YiCoderSettings
+from bot.model.settings.code_qwen_chat import CodeQwenSettings
+from bot.model.settings.em_german_leo import EmGermanLeoSettings
+from bot.model.settings.em_german_leo_mistral import EmGermanLeoMistralSettings
 
 class ModelType(Enum):
     ZEPHYR = "zephyr"
@@ -18,6 +22,10 @@ class ModelType(Enum):
     PHI_3 = "phi-3"
     LLAMA_3 = "llama-3"
     REFACT = "refact"
+    YICODER = "yi-coder"
+    CODEQWEN = "codeqwen"
+    EM_GERMAN_LEO = "em-german-leo"
+    EM_GERMAN_LEO_MISTRAL = "em-german-leo-mistral"
 
 
 SUPPORTED_MODELS = {
@@ -28,6 +36,10 @@ SUPPORTED_MODELS = {
     ModelType.PHI_3.value: PhiThreeSettings,
     ModelType.LLAMA_3.value: Llama3Settings,
     ModelType.REFACT.value: RefactSettings,
+    ModelType.YICODER.value: YiCoderSettings,
+    ModelType.CODEQWEN.value: CodeQwenSettings,
+    ModelType.EM_GERMAN_LEO.value: EmGermanLeoSettings,
+    ModelType.EM_GERMAN_LEO_MISTRAL.value: EmGermanLeoMistralSettings,
 }
 
 
