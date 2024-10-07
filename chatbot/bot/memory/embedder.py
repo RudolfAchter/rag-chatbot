@@ -12,5 +12,7 @@ class Embedder(ABC):
 
 
 class EmbedderHuggingFace(Embedder):
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    # https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2
+    def __init__(self, model_name: str = "paraphrase-multilingual-mpnet-base-v2"):
+        # default: all-MiniLM-L6-v2 | paraphrase-multilingual-mpnet-base-v2
         self.embedder = HuggingFaceEmbeddings(model_name=model_name)
