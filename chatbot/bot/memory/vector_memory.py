@@ -89,7 +89,7 @@ class VectorMemory:
                 {
                     "score": round(score, 3),
                     "document": doc.metadata.get("source"),
-                    "content_preview": f"{doc.page_content[0:150]}...",
+                    "content_preview": f"{doc.page_content[0:300]}...",
                 }
             )
 

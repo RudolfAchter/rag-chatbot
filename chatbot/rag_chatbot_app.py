@@ -143,12 +143,12 @@ def main(parameters) -> None:
             message_placeholder = st.empty()
             full_response = ""
             with st.spinner(
-                text="Refining the question and Retrieving the docs – hang tight! " "This should take seconds."
+                text="Durchsuche Dokumente – Bitte warten! " "Sollte in ein paar Sekunden erledigt sein."
             ):
                 refined_user_input = conversational_retrieval.refine_question(user_input)
                 retrieved_contents, sources = index.similarity_search(query=refined_user_input, k=parameters.k)
                 if retrieved_contents:
-                    full_response += "Here are the retrieved text chunks with a content preview: \n\n"
+                    full_response += "Hier sind die gefundenen Text Ausschnitte mit einer Vorschau: \n\n"
                     message_placeholder.markdown(full_response)
 
                     for source in sources:
@@ -158,7 +158,7 @@ def main(parameters) -> None:
 
                     st.session_state.messages.append({"role": "assistant", "content": full_response})
                 else:
-                    full_response += "I did not detect any pertinent chunk of text from the documents. \n\n"
+                    full_response += "Ich konnte in den Dokumenten leider keine Ergebnisse finden. \n\n"
                     message_placeholder.markdown(full_response)
                     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
@@ -168,8 +168,8 @@ def main(parameters) -> None:
             message_placeholder = st.empty()
             full_response = ""
             with st.spinner(
-                text="Refining the context and Generating the answer for each text chunk – hang tight! "
-                "This should take 1 minute."
+                text="Verfeinere den Kontext. Generiere für jeden Text Abschnitt eine Antwort – Bitte warten! "
+                "Sollte in einer Minute erledigt sein."
             ):
                 streamer, fmt_prompts = conversational_retrieval.context_aware_answer(
                     ctx_synthesis_strategy, user_input, retrieved_contents
