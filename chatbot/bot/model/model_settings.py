@@ -5,7 +5,7 @@ from bot.model.settings.openchat import OpenChat35Settings, OpenChat36Settings
 from bot.model.settings.phi_3 import PhiThreeSettings
 from bot.model.settings.stablelm_zephyr import StableLMZephyrSettings
 from bot.model.settings.starling import StarlingSettings
-
+from bot.model.settings.refact import RefactSettings
 
 class ModelType(Enum):
     ZEPHYR = "zephyr"
@@ -17,6 +17,7 @@ class ModelType(Enum):
     STARLING = "starling"
     PHI_3 = "phi-3"
     LLAMA_3 = "llama-3"
+    REFACT = "refact"
 
 
 SUPPORTED_MODELS = {
@@ -26,6 +27,7 @@ SUPPORTED_MODELS = {
     ModelType.STARLING.value: StarlingSettings,
     ModelType.PHI_3.value: PhiThreeSettings,
     ModelType.LLAMA_3.value: Llama3Settings,
+    ModelType.REFACT.value: RefactSettings,
 }
 
 

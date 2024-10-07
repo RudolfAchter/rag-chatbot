@@ -1,5 +1,11 @@
 # RAG (Retrieval-augmented generation) ChatBot
 
+Mit diesem Bot habe ich erfolgreich einen Chatbot auf Basis meiner Markdown Dokumentationen zum laufen bebracht. Siehe:
+
+- [01_install.sh](01_install.sh)
+- [02_collect_docs.sh](02_collect_docs.sh)
+- [03_start_chatbot.sh](03_start_chatbot.sh)
+
 [![CI](https://github.com/umbertogriffo/rag-chatbot/workflows/CI/badge.svg)](https://github.com/umbertogriffo/rag-chatbot/actions/workflows/ci.yaml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -23,20 +29,22 @@
 
 ## Table of contents
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-    - [Install Poetry](#install-poetry)
-- [Bootstrap Environment](#bootstrap-environment)
-    - [How to use the make file](#how-to-use-the-make-file)
-- [Using the Open-Source Models Locally](#using-the-open-source-models-locally)
-    - [Supported Models](#supported-models)
-- [Supported Response Synthesis strategies](#supported-response-synthesis-strategies)
-- [Example Data](#example-data)
-- [Build the memory index](#build-the-memory-index)
-- [Run the Chatbot](#run-the-chatbot)
-- [Run the RAG Chatbot](#run-the-rag-chatbot)
-- [How to debug the Streamlit app on Pycharm](#how-to-debug-the-streamlit-app-on-pycharm)
-- [References](#references)
+- [RAG (Retrieval-augmented generation) ChatBot](#rag-retrieval-augmented-generation-chatbot)
+    - [Table of contents](#table-of-contents)
+    - [Introduction](#introduction)
+    - [Prerequisites](#prerequisites)
+        - [Install Poetry](#install-poetry)
+    - [Bootstrap Environment](#bootstrap-environment)
+        - [How to use the make file](#how-to-use-the-make-file)
+    - [Using the Open-Source Models Locally](#using-the-open-source-models-locally)
+        - [Supported Models](#supported-models)
+    - [Supported Response Synthesis strategies](#supported-response-synthesis-strategies)
+    - [Example Data](#example-data)
+    - [Build the memory index](#build-the-memory-index)
+    - [Run the Chatbot](#run-the-chatbot)
+    - [Run the RAG Chatbot](#run-the-rag-chatbot)
+    - [How to debug the Streamlit app on Pycharm](#how-to-debug-the-streamlit-app-on-pycharm)
+    - [References](#references)
 
 ## Introduction
 
