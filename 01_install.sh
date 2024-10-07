@@ -10,5 +10,3 @@ export LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64:$LD_LIBRARY_PATH
 
 # Zwei Versuche benötigt. Es musste mein Keyring entsperrt werden?
 make setup_cuda
-
-
