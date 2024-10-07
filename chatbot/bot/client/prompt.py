@@ -1,56 +1,59 @@
 # A string template for the system message.
 # This template is used to define the behavior and characteristics of the assistant.
-SYSTEM_TEMPLATE = """Du bist ein hilfsbereiter, respektvoller und ehrlicher Assistent."""
+SYSTEM_TEMPLATE = """You are a helpful, respectful and honest assistant."""
 
 # A string template with placeholders for question.
-QA_PROMPT_TEMPLATE = """Beantworte die Fragen unten:
+QA_PROMPT_TEMPLATE = """Answer the question below:
 {question}
 """
 
 # A string template with placeholders for question, and context.
-CTX_PROMPT_TEMPLATE = """Kontext Informationen folgen.
+CTX_PROMPT_TEMPLATE = """Context information is below.
 ---------------------
 {context}
 ---------------------
-Anhand der oben genannten Informationen, beantworte die Frage unten:
+Given the context information and not prior knowledge, answer the question below:
 {question}
 """
 
 # A string template with placeholders for question, existing_answer, and context.
-REFINED_CTX_PROMPT_TEMPLATE = """Die Originale Anfrage ist wie folgt: {question}
-Wir haben eine bestehende Antwort bereitgestellt: {existing_answer}
-Wir haben die Möglichkeit, die bestehende Antwort (nur wenn nötig) mit etwas mehr Kontext unten zu verfeinern.
+REFINED_CTX_PROMPT_TEMPLATE = """The original query is as follows: {question}
+We have provided an existing answer: {existing_answer}
+We have the opportunity to refine the existing answer
+(only if needed) with some more context below.
 ---------------------
 {context}
 ---------------------
-Gegeben den neuen Kontext, verfeinere die ursprüngliche Antwort, um die Anfrage besser zu beantworten.
-Wenn der Kontext nicht nützlich ist, gib die ursprüngliche Antwort zurück.
-Verfeinerte Antwort:
+Given the new context, refine the original answer to better answer the query.
+If the context isn't useful, return the original answer.
+Refined Answer:
 """
 
 # A string template with placeholders for question, and chat_history to refine the question based on the chat history.
-REFINED_QUESTION_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """Chatverlauf:
+REFINED_QUESTION_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """Chat History:
 ---------------------
 {chat_history}
 ---------------------
-Folgefrage: {question}
-Basierend auf dem obigen Gespräch und einer Folgefrage, formuliere die Folgefrage um, um eine eigenständige Frage zu sein.
-Eigenständige Frage:
+Follow Up Question: {question}
+Given the above conversation and a follow up question, rephrase the follow up question to be a standalone question.
+Standalone question:
 """
 
 # A string template with placeholders for question, and chat_history to answer the question based on the chat history.
 REFINED_ANSWER_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """
-Sie führen ein Gespräch mit einem menschlichen Teilnehmer, der sich möglicherweise nicht bewusst ist, dass er mit einer Maschine interagiert.
-Dein Ziel ist es, auf eine Weise zu antworten, die überzeugend menschenähnliche Intelligenz und Verhalten simuliert.
-Das Gespräch sollte natürlich, zusammenhängend und kontextuell relevant sein.
-Chat Verlauf:
+You are engaging in a conversation with a human participant who is unaware that they might be
+interacting with a machine.
+Your goal is to respond in a way that convincingly simulates human-like intelligence and behavior.
+The conversation should be natural, coherent, and contextually relevant.
+Chat History:
 ---------------------
 {chat_history}
 ---------------------
-Folgefrage: {question}\n
-Basierend auf dem im Chatverlauf bereitgestellten Kontext und der Folgefrage, beantworten Sie bitte die oben gestellte Folgefrage.
-Wenn die Folgefrage nicht mit dem im Chatverlauf bereitgestellten Kontext korreliert ist, beantworten Sie bitte nur die Folgefrage und ignorieren Sie den im Chatverlauf bereitgestellten Kontext.
-Bitte formulieren Sie die Folgefrage auch nicht um und geben Sie nur eine prägnante Antwort.
+Follow Up Question: {question}\n
+Given the context provided in the Chat History and the follow up question, please answer the follow up question above.
+If the follow up question isn't correlated to the context provided in the Chat History, please just answer the follow up
+question, ignoring the context provided in the Chat History.
+Please also don't reformulate the follow up question, and write just a concise answer.
 """
 
 
