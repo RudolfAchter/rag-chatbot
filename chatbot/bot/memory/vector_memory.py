@@ -59,7 +59,7 @@ class VectorMemory:
         return index
 
     def similarity_search(
-        self, query: str, k: int = 4, threshold: float = 4.1
+        self, query: str, k: int = 4, threshold: float = 6
     ) -> Tuple[List[Document], List[Dict[str, Any]]]:
         """
         Performs similarity search on the given query.
@@ -76,7 +76,7 @@ class VectorMemory:
             The number of retrievals to consider (default is 4).
 
         threshold : float, optional
-            The threshold for considering similarity scores (default is 4.1).
+            The threshold for considering similarity scores (default is 6).
 
 
         Returns:

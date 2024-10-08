@@ -161,7 +161,7 @@ class ConversationRetrieval:
         ctx_synthesis_strategy: BaseSynthesisStrategy,
         question: str,
         retrieved_contents: List[Document],
-        max_new_tokens: int = 512,
+        max_new_tokens: int = 1024,
     ):
         if isinstance(ctx_synthesis_strategy, AsyncTreeSummarizationStrategy):
             loop = get_event_loop()

@@ -17,7 +17,7 @@ if __name__ == "__main__":
     index = VectorMemory(vector_store_path=str(declarative_vector_store_path), embedding=embedding)
 
     # query = "<write_your_query_here>"
-    query = "what do you know about virtual infrastructure management"
+    query = "wie werden Ansible und Terraform an der Uni eingesetzt?"
 
     matched_docs, sources = index.similarity_search(query)
 

@@ -54,6 +54,7 @@ def split_chunks(sources: List, chunk_size: int = 512, chunk_overlap: int = 0) -
     chunks = []
     splitter = MarkdownTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     for chunk in splitter.split_documents(sources):
+        # TODO add metadata -> doc_url in gitlab pages
         chunks.append(chunk)
     return chunks
 

@@ -10,6 +10,7 @@ from bot.model.settings.yi_coder_chat import YiCoderSettings
 from bot.model.settings.code_qwen_chat import CodeQwenSettings
 from bot.model.settings.em_german_leo import EmGermanLeoSettings
 from bot.model.settings.em_german_leo_mistral import EmGermanLeoMistralSettings
+from bot.model.settings.llama_3_big import Llama3BigSettings
 
 class ModelType(Enum):
     ZEPHYR = "zephyr"
@@ -21,6 +22,7 @@ class ModelType(Enum):
     STARLING = "starling"
     PHI_3 = "phi-3"
     LLAMA_3 = "llama-3"
+    LLAMA_3_BIG = "llama-3-big"
     REFACT = "refact"
     YICODER = "yi-coder"
     CODEQWEN = "codeqwen"
@@ -35,6 +37,7 @@ SUPPORTED_MODELS = {
     ModelType.STARLING.value: StarlingSettings,
     ModelType.PHI_3.value: PhiThreeSettings,
     ModelType.LLAMA_3.value: Llama3Settings,
+    ModelType.LLAMA_3_BIG.value: Llama3BigSettings,
     ModelType.REFACT.value: RefactSettings,
     ModelType.YICODER.value: YiCoderSettings,
     ModelType.CODEQWEN.value: CodeQwenSettings,
