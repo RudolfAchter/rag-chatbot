@@ -47,7 +47,15 @@ class VectorMemory:
             The loaded Chroma memory index.
 
         """
-        index = Chroma(persist_directory=str(vector_store_path), embedding_function=self.embedding)
+        # FIXME https://github.com/langchain-ai/langchain/issues/10864
+        # https://github.com/rajib76/langchain_examples/blob/main/examples/how_to_execute_retrievalqa_chain.py
+        # https://app.semanticdiff.com/gh/langchain-ai/langchain/pull/16969/changes#libs/community/langchain_community/vectorstores/chroma.py?ignore_comments=false
+        # SIEHE site-packages/langchain_community/vectorstores/chroma.py -> _select_relevance_score_fn
+        index = Chroma(persist_directory=str(vector_store_path), 
+                       embedding_function=self.embedding,
+                       collection_metadata={"hnsw:space": "ip"})
+                                                          # (cosine|l2|ip)
+
         return index
 
     def similarity_search(
@@ -77,14 +85,16 @@ class VectorMemory:
             A tuple containing the list of matched documents and a list of their sources.
 
         """
-        # `similarity_search_with_relevance_scores` return docs and relevance scores in the range [0, 1].
-        # 0 is dissimilar, 1 is most similar.
-        matched_docs = self.index.similarity_search_with_relevance_scores(query, k=k)
-        filtered_docs_by_threshold = [doc for doc in matched_docs if doc[1] > threshold]
-        sorted_matched_docs_by_relevance_score = sorted(filtered_docs_by_threshold, key=lambda x: x[1], reverse=True)
-        retrieved_contents = [doc[0] for doc in sorted_matched_docs_by_relevance_score]
+        # `similarity_search_with_score` return docs and scores
+        # lower score means better match
+        matched_docs = self.index.similarity_search_with_score(query, k=k)
+
+
+        # filtered_docs_by_threshold = [doc for doc in matched_docs if doc[1] > threshold]
+        sorted_matched_docs_by_score = sorted(matched_docs, key=lambda x: x[1], reverse=False)
+        retrieved_contents = [doc[0] for doc in sorted_matched_docs_by_score]
         sources = []
-        for doc, score in sorted_matched_docs_by_relevance_score:
+        for doc, score in sorted_matched_docs_by_score:
             sources.append(
                 {
                     "score": round(score, 3),

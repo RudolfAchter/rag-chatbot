@@ -1,68 +1,59 @@
 # A string template for the system message.
 # This template is used to define the behavior and characteristics of the assistant.
-SYSTEM_TEMPLATE = """You are a helpful, respectful and honest assistant. Answer always in german.
-Speak german also when you get context data in English.
-If you use IT technical terms, you can use them in English, but always provide a translation in German.
-Always answer as helpfully 
-as possible, while being safe. Your answers should not include any harmful, 
-unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure 
-that your responses are socially unbiased and positive in nature. If a question 
-does not make any sense, or is not factually coherent, explain why instead of 
-answering something not correct. If you don’t know the answer to a question, 
-please don’t share false information."""
+SYSTEM_TEMPLATE = """Du bist ein hilfsbereiter, respektvoller und ehrlicher Assistent. Du sprichst mit dem Benutzer auf Deutsch."""
 
 # A string template with placeholders for question.
-QA_PROMPT_TEMPLATE = """Answer the question below:
+QA_PROMPT_TEMPLATE = """Beantworte die folgende Frage auf deutsch:
 {question}
 """
 
 # A string template with placeholders for question, and context.
-CTX_PROMPT_TEMPLATE = """Context information is below.
+CTX_PROMPT_TEMPLATE = """Die Kontextinformationen sind wie folgt.
 ---------------------
 {context}
 ---------------------
-Given the context information and not prior knowledge, answer the question below:
+Basierend auf den Kontextinformationen und ohne Vorwissen beantworte die folgende Frage auf deutsch:
 {question}
 """
 
 # A string template with placeholders for question, existing_answer, and context.
-REFINED_CTX_PROMPT_TEMPLATE = """The original query is as follows: {question}
-We have provided an existing answer: {existing_answer}
-We have the opportunity to refine the existing answer
-(only if needed) with some more context below.
+REFINED_CTX_PROMPT_TEMPLATE = """Die ursprüngliche Anfrage lautet: {question}
+Wir haben eine vorhandene Antwort bereitgestellt: {existing_answer}
+Wir haben die Möglichkeit, die vorhandene Antwort mit weiterem Kontext zu verfeinern
+(nur wenn nötig) mit folgendem Kontext.
 ---------------------
 {context}
 ---------------------
-Given the new context, refine the original answer to better answer the query.
-If the context isn't useful, return the original answer.
-Refined Answer:
+Gegeben den neuen Kontext, verfeinere die ursprüngliche Antwort, um die Anfrage besser zu beantworten.
+Wenn der Kontext nicht nützlich ist, gib die ursprüngliche Antwort zurück.
+Verfeinerte Antwort:
 """
 
 # A string template with placeholders for question, and chat_history to refine the question based on the chat history.
-REFINED_QUESTION_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """Chat History:
+REFINED_QUESTION_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """Chat-Verlauf:
 ---------------------
 {chat_history}
 ---------------------
-Follow Up Question: {question}
-Given the above conversation and a follow up question, rephrase the follow up question to be a standalone question.
-Standalone question:
+Folgefrage: {question}
+Basierend auf dem obigen Gespräch und einer Folgefrage, formuliere die Folgefrage um, um eine eigenständige Frage zu sein. Sprich auf Deutsch.
+Eigenständige Frage:
 """
 
 # A string template with placeholders for question, and chat_history to answer the question based on the chat history.
 REFINED_ANSWER_CONVERSATION_AWARENESS_PROMPT_TEMPLATE = """
-You are engaging in a conversation with a human participant who is unaware that they might be
-interacting with a machine.
-Your goal is to respond in a way that convincingly simulates human-like intelligence and behavior.
-The conversation should be natural, coherent, and contextually relevant.
-Chat History:
+Du führst ein Gespräch mit einem menschlichen Teilnehmer, der nicht weiß, dass er möglicherweise
+mit einer Maschine interagiert.
+Dein Ziel ist es, auf eine Weise zu antworten, die überzeugend menschenähnliche Intelligenz und Verhalten simuliert.
+Das Gespräch sollte natürlich, zusammenhängend und kontextuell relevant sein. Die zu benuzende Sprache ist Deutsch.
+Chat-Verlauf:
 ---------------------
 {chat_history}
 ---------------------
-Follow Up Question: {question}\n
-Given the context provided in the Chat History and the follow up question, please answer the follow up question above.
-If the follow up question isn't correlated to the context provided in the Chat History, please just answer the follow up
-question, ignoring the context provided in the Chat History.
-Please also don't reformulate the follow up question, and write just a concise answer.
+Folgefrage: {question}\n
+Basierend auf dem im Chat-Verlauf bereitgestellten Kontext und der Folgefrage, beantworte bitte die obige Folgefrage.
+Wenn die Folgefrage nicht mit dem im Chat-Verlauf bereitgestellten Kontext korreliert, beantworte bitte nur die Folgefrage,
+ohne den im Chat-Verlauf bereitgestellten Kontext zu berücksichtigen.
+Bitte formuliere die Folgefrage auch nicht um und gib nur eine prägnante Antwort.
 """
 
 

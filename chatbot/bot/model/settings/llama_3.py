@@ -2,7 +2,8 @@ from bot.model.model import Model
 
 
 class Llama3Settings(Model):
-    url = "https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+    # url = "https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
+    url = "https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q6_K.gguf"
     file_name = "Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf"
     config = {
         "n_ctx": 4096,  # The max sequence length to use - note that longer sequence lengths require much more resources
