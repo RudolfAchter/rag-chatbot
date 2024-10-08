@@ -1,6 +1,7 @@
 import os
 import yaml
 import subprocess
+
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -10,6 +11,7 @@ def ignore_unknown_tags(loader, suffix, node):
 yaml.FullLoader.add_multi_constructor('!', ignore_unknown_tags)
 yaml.FullLoader.add_multi_constructor('tag:yaml.org,2002:python/name:', ignore_unknown_tags)
 yaml.FullLoader.add_multi_constructor('!!python/name:', ignore_unknown_tags)
+
 
 def get_current_git_branch(source_path):
     result = subprocess.run(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], 
@@ -56,11 +58,6 @@ def get_mkdocs_url(source_path):
         current_dir = os.path.dirname(current_dir)
     return {}
 
-
-def prettify_source(source):
-    document = source.get("document") # os.path.basename(source.get("document"))
-    metadata = get_mkdocs_url(document)
-    doc_url = metadata.get('doc_url')
-    score = source.get("score")
-    content_preview = source.get("content_preview")
-    return f"• **[{document}]({doc_url})** with score ({round(score,2)}) \n\n **Preview:** \n {content_preview} \n"
+# /home/rudi/git/github/fork/rag-chatbot/docs/ansible/src/ansible/basisdienste/terrashell/README.md
+# get_mkdocs_url('/home/rudi/git/github/fork/rag-chatbot/docs/chief-of-emergency/terraform/README.md')
+get_mkdocs_url('/home/rudi/git/github/fork/rag-chatbot/docs/ansible/src/ansible/basisdienste/terrashell/README.md')
