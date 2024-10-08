@@ -1,6 +1,6 @@
 # RAG (Retrieval-augmented generation) ChatBot
 
-Mit diesem Bot habe ich erfolgreich einen Chatbot auf Basis meiner Markdown Dokumentationen zum laufen bebracht. Siehe:
+I have successfully implemented a chatbot based on my Markdown documentation using this bot. See:
 
 - [01_install.sh](01_install.sh)
 - [02_collect_docs.sh](02_collect_docs.sh)
@@ -16,6 +16,7 @@ Mit diesem Bot habe ich erfolgreich einen Chatbot auf Basis meiner Markdown Doku
 >   * `Ubuntu 22.04.2 LTS` running on a Lenovo Legion 5 Pro with twenty `12th Gen Intel® Core™ i7-12700H` and
       an `NVIDIA GeForce RTX 3060`.
 >   * `MacOS Sonoma 14.3.1` running on a MacBook Pro M1 (2020).
+>   * (Rudolf Achter) `Ubuntu 22.04.3 LTS` running on a HP Z440 with a `Intel® Xeon(R) CPU E5-1650 v3` and a `NVIDIA GeForce RTX 3060` with 12 GB VRAM.
 >
 > If you are using another Operating System or different hardware, and you can't load the models, please
 > take a look at the official Llama Cpp Python's

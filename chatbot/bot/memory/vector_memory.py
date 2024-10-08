@@ -59,7 +59,7 @@ class VectorMemory:
         return index
 
     def similarity_search(
-        self, query: str, k: int = 4, threshold: float = 0.2
+        self, query: str, k: int = 4, threshold: float = 4.1
     ) -> Tuple[List[Document], List[Dict[str, Any]]]:
         """
         Performs similarity search on the given query.
@@ -76,7 +76,7 @@ class VectorMemory:
             The number of retrievals to consider (default is 4).
 
         threshold : float, optional
-            The threshold for considering similarity scores (default is 0.2).
+            The threshold for considering similarity scores (default is 4.1).
 
 
         Returns:
@@ -90,8 +90,8 @@ class VectorMemory:
         matched_docs = self.index.similarity_search_with_score(query, k=k)
 
 
-        # filtered_docs_by_threshold = [doc for doc in matched_docs if doc[1] > threshold]
-        sorted_matched_docs_by_score = sorted(matched_docs, key=lambda x: x[1], reverse=False)
+        filtered_docs_by_threshold = [doc for doc in matched_docs if doc[1] < threshold]
+        sorted_matched_docs_by_score = sorted(filtered_docs_by_threshold, key=lambda x: x[1], reverse=False)
         retrieved_contents = [doc[0] for doc in sorted_matched_docs_by_score]
         sources = []
         for doc, score in sorted_matched_docs_by_score:
