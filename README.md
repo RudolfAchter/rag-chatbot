@@ -6,6 +6,77 @@ I have successfully implemented a chatbot based on my Markdown documentation usi
 - [02_collect_docs.sh](02_collect_docs.sh)
 - [03_start_chatbot.sh](03_start_chatbot.sh)
 
+## Quickstart
+
+### Install
+
+```bash
+# Install CUDA Toolkit first: https://developer.nvidia.com/cuda-12-3-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=runfile_local
+# This replaces you grafics drivers / kernel modules. Have Fun!
+wget https://developer.download.nvidia.com/compute/cuda/12.3.0/local_installers/cuda_12.3.0_545.23.06_linux.runsudo sh cuda_12.3.0_545.23.06_linux.run
+
+# sudo ln -s /usr/bin/python3 /usr/local/bin/python
+
+curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.7.0 python3 -
+alias python='python3'
+
+# .bashrc
+export PATH=/usr/local/cuda-12.3/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64:$LD_LIBRARY_PATH
+
+# Zwei Versuche benötigt. Es musste mein Keyring entsperrt werden?
+make setup_cuda
+```
+
+### Collect Docs
+
+```bash
+# Clone some Docs repositories
+cd docs
+git clone https://vcs.zim.uni-passau.de/referat-basisdienste/ansible.git
+git clone https://vcs.zim.uni-passau.de/referat-basisdienste/public-docs.git
+
+# activate python virtual environment
+. .venv/bin/activate
+
+# Save Docs into memory as "embeddings" for the chatbot
+python chatbot/memory_builder.py --chunk-size 1000
+```
+
+### Start a Chatbot
+    
+```bash
+# Activate python virtual environment
+. .venv/bin/activate
+
+# Start a default chatbot app
+streamlit run chatbot/chatbot_app.py -- --model openchat-3.6 --max-new-tokens 1024
+
+# Get Help for the rag-chatbot app
+python chatbot/rag_chatbot_app.py -h
+
+# RAG Chatbot
+# 
+# options:
+#   -h, --help            show this help message and exit
+#   --model [{stablelm-zephyr,openchat-3.5,openchat-3.6,starling,phi-3,llama-3,llama-3-big,refact,yi-coder,codeqwen,em-german-leo,em-german-leo-mistral}]
+#                         Model to be used. Defaults to stablelm-zephyr.
+#   --synthesis-strategy [{create-and-refine,tree-summarization,async-tree-summarization}]
+#                         Model to be used. Defaults to create-and-refine.
+#   --k K                 Number of chunks to return from the similarity search. Defaults to 2.
+
+
+# Start a rag chatbot app with a specific model
+streamlit run chatbot/rag_chatbot_app.py -- --k 8 --model stablelm-zephyr
+streamlit run chatbot/rag_chatbot_app.py -- --k 4 --model llama-3
+streamlit run chatbot/rag_chatbot_app.py -- --k 8 --model openchat-3.6
+
+# Start a rag chatbot app with a specific model and synthesis strategy
+streamlit run chatbot/rag_chatbot_app.py -- --k 8 --model stablelm-zephyr --synthesis-strategy tree-summarization
+streamlit run chatbot/rag_chatbot_app.py -- --k 4 --model llama-3 --synthesis-strategy async-tree-summarization
+streamlit run chatbot/rag_chatbot_app.py -- --k 8 --model openchat-3.6 --synthesis-strategy create-and-refine
+```
+
 [![CI](https://github.com/umbertogriffo/rag-chatbot/workflows/CI/badge.svg)](https://github.com/umbertogriffo/rag-chatbot/actions/workflows/ci.yaml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -31,6 +102,10 @@ I have successfully implemented a chatbot based on my Markdown documentation usi
 ## Table of contents
 
 - [RAG (Retrieval-augmented generation) ChatBot](#rag-retrieval-augmented-generation-chatbot)
+    - [Quickstart](#quickstart)
+        - [Install](#install)
+        - [Collect Docs](#collect-docs)
+        - [Start a Chatbot](#start-a-chatbot)
     - [Table of contents](#table-of-contents)
     - [Introduction](#introduction)
     - [Prerequisites](#prerequisites)
